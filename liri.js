@@ -75,20 +75,17 @@ function songs() {
 
         var array = data.tracks.items;
         var filteredResultsArray = [];
-
         for (var i = 0; i < array.length; i++) {
-            let 
+            let song = array[i];
+            let songDetails = [];
+            songDetails.push('artist: ', song.album.artists[0].name);
+            songDetails.push('song: ', song.name);
+            songDetails.push('link: ', song.preview_url);
+            songDetails.push('album: ', song.album.name);
+            filteredResultsArray.push(songDetails);
         }
-
-
-
-        // for loop
-        // console.log the info
-
-
-
+        console.log(filteredResultsArray);
     });
-
 
 }
 
