@@ -7,6 +7,8 @@ var keys = require("./keys.js");
 var Spotify = require("node-spotify-api")
 var spotify = new Spotify(keys.spotify);
 
+var omdbApi = require('omdb-client');
+
 ///
 
 // operation / key
@@ -90,7 +92,24 @@ function songs() {
 }
 
 function movies() {
-
+    // * Title of the movie.
+    // * Year the movie came out.
+    // * IMDB Rating of the movie.
+    // * Rotten Tomatoes Rating of the movie.
+    // * Country where the movie was produced.
+    // * Language of the movie.
+    // * Plot of the movie.
+    // * Actors in the movie.
+ 
+var params = {
+    apiKey: 'XXXXXXX',
+    title: 'Terminator',
+    year: 2012
+}
+omdbApi.get(params, function(err, data) {
+    // process response...
+});
+ 
 
 }
 
