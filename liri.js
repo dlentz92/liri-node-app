@@ -9,7 +9,7 @@ var spotify = new Spotify(keys.spotify);
 
 var omdbApi = require('omdb-client');
 var omdbKey = keys.ombd;
-var movieName=process.argv[2];
+var movieName = process.argv[2];
 ///
 
 // operation / key
@@ -103,44 +103,39 @@ function movies() {
     // * Plot of the movie.
     // * Actors in the movie.
 
-var queryUrl= "http://www.omdbapi.com/?t=" + movieName + omdbKey;
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + omdbKey;
 
-var array = movieName;
-var filteredResultsArray = []; 
-for (var i = 0; i < array.length; i++) {
-    let movie = array[i];
-    let movieDetails = [];
-    
-    // movieDetails.push('title: ', movie.title);
-    // movieDetails.push('release year: ', movie.year);
-    // movieDetails.push('IMBD rating: ', movie.imbdRating);
-    // movieDetails.push('Rotten Tomatoes rating: ', movie.ratings);
-    // // movieDetails.push('Movie filmed in: ', movie.);
-    // movieDetails.push('language: ', movie.language);
-    // movieDetails.push('plot: ', movie.plot);
-    // movieDetails.push('actors: ', movie.actors);
-    // filteredResultsArray.push(movieDetails);
-    // console.log(filteredResultsArray);
-}
+    var array = movieName;
+    var filteredResultsArray = [];
+    for (var i = 0; i < array.length; i++) {
+        let movie = array[i];
+        let movieDetails = [];
 
-// console.log('hi danit', key);
-console.log(omdbKey.id, 'id');
-let localKey = omdbKey.id;
-    var params = {
-        apiKey: localKey,
-        title: key
+        console.log(omdbKey.id, 'id');
+        let localKey = omdbKey.id;
+        var params = {
+            apiKey: localKey,
+            title: key
+        }
+        console.log(omdbKey);
+
+        omdbApi.get(params, function (err, data) {
+            //         // process response...
+
+            console.log('data', data);
+
+            movieDetails.push('title: ', movie.title);
+            movieDetails.push('release year: ', movie.year);
+            movieDetails.push('IMBD rating: ', movie.imbdRating);
+            movieDetails.push('Rotten Tomatoes rating: ', movie.ratings);
+            // movieDetails.push('Movie filmed in: ', movie.);
+            movieDetails.push('language: ', movie.language);
+            movieDetails.push('plot: ', movie.plot);
+            movieDetails.push('actors: ', movie.actors);
+            filteredResultsArray.push(movieDetails);
+            console.log(filteredResultsArray);
+        });
     }
-    console.log(omdbKey);
-
-    omdbApi.get(params, function (err, data) {
-//         // process response...
-        
-console.log('data', data);
-
-
-    });
-
-
 }
 
 function answer() {
