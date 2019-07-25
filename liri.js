@@ -10,6 +10,8 @@ var spotify = new Spotify(keys.spotify);
 var omdbApi = require('omdb-client');
 var omdbKey = keys.ombd;
 var movieName = process.argv[2];
+
+var fs =require("fs");
 ///
 
 // operation / key
@@ -139,7 +141,7 @@ function movies() {
 }
 
 function answer() {
-
+var input=
 
 
 }
