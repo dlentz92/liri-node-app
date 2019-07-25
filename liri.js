@@ -11,7 +11,7 @@ var omdbApi = require('omdb-client');
 var omdbKey = keys.ombd;
 var movieName = process.argv[2];
 
-var fs =require("fs");
+var fs = require("fs");
 ///
 
 // operation / key
@@ -141,7 +141,32 @@ function movies() {
 }
 
 function answer() {
-var input=
+    fs.readFile("random.txt", "utf8", function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        spotify.search({ type: 'track', query: key }, function (err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
 
-
+            var array = data.tracks.items;
+            var filteredResultsArray = [];
+            for (var i = 0; i < array.length; i++) {
+                let song = array[i];
+                let songDetails = [];
+                songDetails.push('artist: ', song.album.artists[0].name);
+                songDetails.push('song: ', song.name);
+                songDetails.push('link: ', song.preview_url);
+                songDetails.push('album: ', song.album.name);
+                filteredResultsArray.push(songDetails);
+            }
+            console.log(filteredResultsArray);
+        });
+        // fs.appendFile("random.txt", ", " + function(err) {
+        //     if (err) {
+        //       return console.log(err);
+        //     }
+        //   });
+    })
 }
