@@ -106,7 +106,7 @@ function movies() {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             // console.log(response);
             var movie = response.data;
 
@@ -136,26 +136,6 @@ function movies() {
             console.log(error.config);
         });
     };
-
-
-    // var array = movieName;
-    // var filteredResultsArray = [];
-    // for (var i = 0; i < array.length; i++) {
-    //     let movie = array[i];
-    //     let movieDetails = [];
-
-    // console.log(omdbKey.id, 'id');
-    // let localKey = omdbKey.id;
-    // var params = {
-    //     apiKey: localKey,
-    //     title: key
-    // }
-    // console.log(omdbKey);
-
-    // omdbApi.get(params, function (err, data) {
-    //         // process response...
-
-    // console.log('data', data);
 
 
 // fs.readFile("movies.txt", "utf8", function(error, data) {
