@@ -92,7 +92,7 @@ function songs(searchTerm) {
 }
 
 
-function movies(searchTerm) {
+function movies() {
     // * Title of the movie.
     // * Year the movie came out.
     // * IMDB Rating of the movie.
@@ -102,11 +102,12 @@ function movies(searchTerm) {
     // * Plot of the movie.
     // * Actors in the movie.
 
-    var queryUrl = "http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy";
+    var queryUrl = "http://www.omdbapi.com/?t=" + key + "&y=&plot=short&apikey=trilogy";
 
     axios.get(queryUrl).then(
         function (response) {
-            // console.log(response.data);
+            console.log(response.data);
+            // console.log(response);
             var movie = response.data;
 
             console.log("Title: " + movie.Title)
@@ -121,8 +122,6 @@ function movies(searchTerm) {
         })
         .catch(function (error) {
             if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
                 console.log("---------------Data---------------");
                 console.log(error.response.data);
                 console.log("---------------Status---------------");
@@ -130,15 +129,13 @@ function movies(searchTerm) {
                 console.log("---------------Status---------------");
                 console.log(error.response.headers);
             } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
                 console.log(error.request);
             } else {
-                // Something happened in setting up the request that triggered an Error
                 console.log("Error", error.message);
             }
             console.log(error.config);
         });
+    };
 
 
     // var array = movieName;
@@ -159,7 +156,7 @@ function movies(searchTerm) {
     //         // process response...
 
     // console.log('data', data);
-}
+
 
 // fs.readFile("movies.txt", "utf8", function(error, data) {
 
