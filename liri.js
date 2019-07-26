@@ -111,13 +111,13 @@ function movies(searchTerm) {
 
             console.log("Title: " + movie.Title)
             console.log("Year:" + movie.Year)
-            console.log("Imbd rating: " +movie.imdbRating)
+            console.log("Imbd rating: " + movie.imdbRating)
             console.log("rotten tomatoes: " + movie.Ratings.Source)
-            console.log("produced in :"+ movie.Country)
+            console.log("produced in :" + movie.Country)
             console.log("language: " + movie.Language)
             console.log("plot: " + movie.Plot)
             console.log("actors: " + movie.Actors)
-            
+
         })
         .catch(function (error) {
             if (error.response) {
