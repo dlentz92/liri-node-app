@@ -135,7 +135,7 @@ function movies() {
             }
             console.log(error.config);
         });
-    };
+};
 
 
 function answer() {
@@ -143,16 +143,24 @@ function answer() {
         if (err) {
             return console.log(err);
         }
+        var data=data.slice(18);
         var data = data.split(", ");
         console.log(data);
-
-        spotify.search({ type: 'track', query: (data[1] || key) },
-            function (err, data) {
-                if (err) {
-                    return console.log('Error occurred: ' + err);
-                }
-                console.log(data);
-            })
+        // switch (answer) {
+        //     case 'concert-this':
+        //         concerts()
+        //         break;
+        //     case 'spotify-this-song':
+        //         songs()
+        //         break;
+        //     case 'movie-this':
+        //         movies()
+        //         break;
+        //     case 'do-what-it-says':
+        //         answer()
+        //         break;
+        //     default:
+        //         console.log("operation not existing")
+        // }
     })
 }
-
