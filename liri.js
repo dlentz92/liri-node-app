@@ -102,11 +102,22 @@ function movies(searchTerm) {
     // * Plot of the movie.
     // * Actors in the movie.
 
-    var queryUrl = "http://www.omdbapi.com/?t=" + (searchTerm || key) + "&y=&plot=short&apikey=trilogy";
+    var queryUrl = "http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy";
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            // console.log(response.data);
+            var movie = response.data;
+
+            console.log("Title: " + movie.Title)
+            console.log("Year:" + movie.Year)
+            console.log("Imbd rating: " +movie.imdbRating)
+            console.log("rotten tomatoes: " + movie.Ratings.Source)
+            console.log("produced in :"+ movie.Country)
+            console.log("language: " + movie.Language)
+            console.log("plot: " + movie.Plot)
+            console.log("actors: " + movie.Actors)
+            
         })
         .catch(function (error) {
             if (error.response) {
@@ -148,63 +159,61 @@ function movies(searchTerm) {
     //         // process response...
 
     // console.log('data', data);
-
-    // movieDetails.push('title: ', movie.title);
-    // movieDetails.push('release year: ', movie.year);
-    // movieDetails.push('IMBD rating: ', movie.imbdRating);
-    // movieDetails.push('Rotten Tomatoes rating: ', movie.ratings);
-    // // movieDetails.push('Movie filmed in: ', movie.);
-    // movieDetails.push('language: ', movie.language);
-    // movieDetails.push('plot: ', movie.plot);
-    // movieDetails.push('actors: ', movie.actors);
-    // filteredResultsArray.push(movieDetails);
-    // console.log(filteredResultsArray);
-    // });
 }
 
+// fs.readFile("movies.txt", "utf8", function(error, data) {
+
+//     // If the code experiences any errors it will log the error to the console.
+//     if (error) {
+//       return console.log(error);
+//     }
+
+//     // We will then print the contents of data
+//     console.log(data);
+
+//     // Then split it by commas (to make it more readable)
+//     var dataArr = data.split(",");
+
+//     // We will then re-display the content as an array for later use.
+//     console.log(dataArr);
+
+//   });
 function answer() {
     fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) {
             return console.log(err);
         }
-        data = data.split(", ");
-        var searchTerm = data.slice(1).join(" ")
+        var data = data.split(", ");
         console.log(data);
-        console.log(searchTerm);
-        switch (data[0]) {
-            case 'concert-this':
-                concerts(searchTerm)
-                break;
-            case 'spotify-this-song':
-                songs(searchTerm)
-                break;
-            case 'movie-this':
-                movies(searchTerm)
-                break;
-        }
 
-        // spotify.search({ type: 'track', query: key }, function (err, data) {
-        //     if (err) {
-        //         return console.log('Error occurred: ' + err);
-        //     }
-
-        // var array = data.tracks.items;
-        // var filteredResultsArray = [];
-        // for (var i = 0; i < array.length; i++) {
-        //     let song = array[i];
-        //     let songDetails = [];
-        //     songDetails.push('artist: ', song.album.artists[0].name);
-        //     songDetails.push('song: ', song.name);
-        //     songDetails.push('link: ', song.preview_url);
-        //     songDetails.push('album: ', song.album.name);
-        //     filteredResultsArray.push(songDetails);
+        // for (var i = 0; i < data.length; i++) {
+        //     console.log(data[i])
         // }
-        // console.log(filteredResultsArray);
-        // });
-        // fs.appendFile("random.txt", ", " + function(err) {
-        //     if (err) {
-        //       return console.log(err);
-        //     }
-        //   });
+        spotify.search({ type: 'track', query: (data[1] || key) },
+            function (err, data) {
+                if (err) {
+                    return console.log('Error occurred: ' + err);
+                }
+                console.log(data);
+                // var array = data.tracks.items;
+                // var filteredResultsArray = [];
+                // for (var i = 0; i < array.length; i++) {
+                //     let song = array[i];
+                //     let songDetails = [];
+                //     songDetails.push('artist: ', song.album.artists[0].name);
+                //     songDetails.push('song: ', song.name);
+                //     songDetails.push('link: ', song.preview_url);
+                //     songDetails.push('album: ', song.album.name);
+                //     filteredResultsArray.push(songDetails);
+                // }
+                // console.log(filteredResultsArray);
+                // });
+                // fs.appendFile("random.txt", ", " + function(err) {
+                //     if (err) {
+                //       return console.log(err);
+                //     }
+                //   });
+            })
     })
 }
+
